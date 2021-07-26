@@ -1,33 +1,12 @@
-# This CreditCard class is intended to give a simple way to store and validate
-# credit card numbers.
+# This CreditCard class is intended to give a simple way to store
+# credit card numbers after they are validated.
 
-class CreditCard
+class CreditCard   
   def initialize(number)
     @number = number
   end
 
   def valid?
-    array = @number.split("")
-    reversed = array.reverse
-    doubled = reversed.map.with_index do |num, index|
-      if index % 2 == 0
-        num.to_i
-      else
-        num.to_i * 2
-      end
-    end
-    summed = doubled.map do |num|
-      if num > 9
-        num - 9
-      else
-        num
-      end
-    end
-    total = summed.sum
-    if total % 10 == 0
-      true
-    else
-      false
-    end
+    NumberValidation.check(@number)
   end
 end
