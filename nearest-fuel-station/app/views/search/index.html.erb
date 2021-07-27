@@ -1,10 +1,13 @@
-<% @electric_stations.each do |stations| %>
-	<section class = "climb">
-		<%= stations[:station_name] %>
-		<%= stations[:street_address] %>
-		<%= stations[:zip] %>
-		<%= stations[:country] %>
-		<%= stations[:fuel_type_code] %>
-		<%= stations[:access_days_times] %>
-	</section>
-<% end %>
+<section>
+  <section class="navbar-header">
+    <p class ="navbar-title">Nearest Fuel Stations</p>
+  </section>
+  <section class="navbar-search-results">
+		<% electric_stations.each do |station|%>
+			<p class="name">Station Name <%= station.name %></p>
+			<p class="address">Address <%= station.address %></p>
+			<p class="fuel-type">Fuel Type <%= station.fuel_type %></p>
+			<p class="access-times">Access Times <%= station.access_times %></p>
+		<% end %>
+  </section>
+</section>
