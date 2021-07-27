@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-fdescribe "user can visit the welcome page" do
+describe "user can visit the welcome page" do
   before do
     visit '/'
   end
@@ -10,23 +10,15 @@ fdescribe "user can visit the welcome page" do
     expect(page).to have_button("Find Nearest Station")
   end
 
-  scenario "and find a count of electric stations within 5 miles of Turing" do
+  scenario "and can find electric stations within 5 miles of Turing" do
     click_on "Find Nearest Station"
-
     expect(current_path).to eq search_path
-    expect(page).to have_content 
-
-    # And I select "Turing" from the start location drop down (Note: Use the existing search form)
-    # And I click "Find Nearest Electric Station"
-    # Then I should be on page "/search"
-
-
-    # And I should see a count of Electric Stations within 5 miles of my location.
-    # And I should see details about the five closest electric fuel stations to Turing, including their:
-
-    # - Name
-    # - Address
-    # - Fuel Type
-    # - Access Times
+    
+    within".navbar-search-results" do 
+      expect(".name").to_not be_empty
+      expect(".address").to_not be_empty
+      expect(".access_times").to_not be_empty
+      expect(".fuel_type").to_not be_empty
+    end
   end
 end
