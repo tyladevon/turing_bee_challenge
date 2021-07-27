@@ -1,5 +1,9 @@
 class SearchController < ApplicationController
   def index
-    @electric_stations = ElectricStationService.new(params["location"]).stations
+    @location = params["location"]
+    stations = ElectricStation.new(@location).call_station
+    render locals: {
+      electric_stations: stations
+    }
   end
 end

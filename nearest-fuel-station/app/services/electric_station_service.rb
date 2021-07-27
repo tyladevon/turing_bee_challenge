@@ -3,15 +3,15 @@ class ElectricStationService
     @location = location
   end
 
-	# https://developer.nrel.gov/api/alt-fuel-stations/v1.json?fuel_type=E85,ELEC&state=CA&limit=2&api_key=yMNTSAEAC2LiD9ZVkbRqeKMLg2K2O3djuKE5gtQx
-
-	#   /api/alt-fuel-stations/v1/nearest.json?api_key=DEMO_KEY&location=1617+Cole+Blvd+Golden+CO&fuel_type=ELEC&limit=5
-
   def stations
-		response = conn.get('/api/alt-fuel-stations/v1/nearest.json?api_key=yMNTSAEAC2LiD9ZVkbRqeKMLg2K2O3djuKE5gtQx&location=1617+Cole+Blvd+Golden+CO&fuel_type=ELEC&limit=5') do |req|
+    response = conn.get('/api/alt-fuel-stations/v1/nearest.json?') do |req|
+      req.params['api_key'] = ENV['ELEC_STATION']
+      req.params['location'] = @location
+      req.params['access'] = 'public'
+      req.params['fuel_type'] = 'ELEC'
+      req.params['limit'] = 5
     end
-    stations = JSON.parse(response.body, symbolize_names: true)[:fuel_stations]
-    binding.pry
+    JSON.parse(response.body, symbolize_names: true)[:fuel_stations]
   end
 
   private
