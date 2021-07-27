@@ -1,0 +1,10 @@
+<% @electric_stations.each do |stations| %>
+	<section class = "climb">
+		<%= stations[:station_name] %>
+		<%= stations[:street_address] %>
+		<%= stations[:zip] %>
+		<%= stations[:country] %>
+		<%= stations[:fuel_type_code] %>
+		<%= stations[:access_days_times] %>
+	</section>
+<% end %>
